@@ -8,5 +8,11 @@ namespace LemonadeStandConsoleApp
 {
     class UserInterface
     {
+
+        public void AskName()
+        {
+            Console.WriteLine("Please enter your Player Name.");
+        }
+
     }
 }

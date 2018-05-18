@@ -13,10 +13,72 @@ namespace LemonadeStandConsoleApp
         private int earnedMoney;
         private int totalMoney;
         private int profit;
-        private int totalCustSatisfactionPercent;
+
+        //Properties//
+        public string PlayerName
+        {
+            get
+            {
+                return playerName;
+            }
+            set
+            {
+                playerName = value;
+            }
+        }
+        public int StartingMoney {
+            get
+            {
+                return startingMoney;
+            }
+        }
+        public int EarnedMoney
+        {
+            get
+            {
+                return earnedMoney;
+            }
+            set
+            {
+                earnedMoney = value;
+            }
+        }
+        public int TotalMoney
+        {
+            get
+            {
+                return totalMoney;
+            }
+            set
+            {
+                totalMoney = value;
+            }
+        }
+        public int Profit
+        {
+            get
+            {
+                return profit;
+            }
+            set
+            {
+                profit = value;
+            }
+        }
 
 
+        public void SetName()
+        {
+            UserInterface userInterface = new UserInterface();
+            userInterface.AskName();
+            GetName();
+        }
 
+        public string GetName()
+        {
+            playerName = Console.ReadLine();
+            return playerName;
+        }
 
 
 
