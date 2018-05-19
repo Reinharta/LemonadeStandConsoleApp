@@ -8,5 +8,6 @@ namespace LemonadeStandConsoleApp
 {
     class Weather
     {
+
     }
 }

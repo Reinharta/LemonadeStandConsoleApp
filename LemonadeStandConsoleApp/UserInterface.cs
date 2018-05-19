@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class UserInterface
+    public static class UserInterface
     {
 
-        public void AskName()
+        public static void DisplayMessage(string message)
         {
-            Console.WriteLine("Please enter your Player Name.");
+            Console.WriteLine(message);
         }
+
+        public static void DisplayList(List <int> list)
+        {
+            list.ForEach(Console.WriteLine);
+        }
+
+        public static string GetUserInput()
+        {
+            string input = Console.ReadLine();
+            return input;
+        }
+        
+
 
     }
 }

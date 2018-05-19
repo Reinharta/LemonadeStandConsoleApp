@@ -8,5 +8,6 @@ namespace LemonadeStandConsoleApp
 {
     class Recipe
     {
+        //Use dictionary to store recipe? ingredient as key, variable as value?
     }
 }

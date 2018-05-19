@@ -1,0 +1,7 @@
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\bin\Debug\LemonadeStandConsoleApp.exe.config
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\bin\Debug\LemonadeStandConsoleApp.exe
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\bin\Debug\LemonadeStandConsoleApp.pdb
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\obj\Debug\LemonadeStandConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\obj\Debug\LemonadeStandConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\obj\Debug\LemonadeStandConsoleApp.exe
+C:\Users\Anina\Desktop\VSProjects\LemonadeStandConsoleApp\LemonadeStandConsoleApp\obj\Debug\LemonadeStandConsoleApp.pdb

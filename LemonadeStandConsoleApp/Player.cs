@@ -9,7 +9,7 @@ namespace LemonadeStandConsoleApp
     class Player
     {
         private string playerName;
-        private int startingMoney = 20;
+        private double startingMoney = 20.00;
         private int earnedMoney;
         private int totalMoney;
         private int profit;
@@ -23,13 +23,24 @@ namespace LemonadeStandConsoleApp
             }
             set
             {
-                playerName = value;
+                if (value.Length >= 1)
+                {
+                    playerName = value;
+                }
+                else if (value.Length < 1)
+                {
+                    SetName();
+                }
             }
         }
-        public int StartingMoney {
+        public double StartingMoney {
             get
             {
                 return startingMoney;
+            }
+            set
+            {
+                startingMoney = value;
             }
         }
         public int EarnedMoney
@@ -66,19 +77,15 @@ namespace LemonadeStandConsoleApp
             }
         }
 
+ 
 
         public void SetName()
         {
-            UserInterface userInterface = new UserInterface();
-            userInterface.AskName();
-            GetName();
+            UserInterface.DisplayMessage("Please enter Player Name.");
+            PlayerName = UserInterface.GetUserInput();
         }
 
-        public string GetName()
-        {
-            playerName = Console.ReadLine();
-            return playerName;
-        }
+        
 
 
 
