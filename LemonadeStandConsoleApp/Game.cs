@@ -45,6 +45,7 @@ namespace LemonadeStandConsoleApp
 
 
 
+
         }
 
         public void DisplayIntructions()
@@ -64,7 +65,10 @@ namespace LemonadeStandConsoleApp
         {
             UserInterface.DisplayMessage("\nHow many days would you like your Lemonade Stand to be open? Please choose from: ");
             UserInterface.DisplayIntList(gameLengthOptions);
-            GameLength = Convert.ToInt32(UserInterface.GetUserInput());
+            string input = UserInterface.GetUserInput();
+            int parsedInput;
+            Int32.TryParse(input, out parsedInput);
+            GameLength = parsedInput;
             /////input comes in as string, set to in var. Characters cannot convert to int -- need to handle this exception. "try" "exception"?
         }
 
@@ -87,6 +91,15 @@ namespace LemonadeStandConsoleApp
             }
         }
         public void ChangeRecipe()
+        {
+
+        }
+
+        public void DisplayInventory()
+        {
+
+        }
+        public void DisplayTotalMoney()
         {
 
         }
