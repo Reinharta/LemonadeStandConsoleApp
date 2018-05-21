@@ -12,6 +12,7 @@ namespace LemonadeStandConsoleApp
         {
             Game newGame = new Game();
             newGame.SetupGame();
+            Console.ReadLine();
         }
     }
 }

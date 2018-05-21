@@ -13,7 +13,7 @@ namespace LemonadeStandConsoleApp
         private Player player = new Player();
         private int gameLength;
         private List<int> gameLengthOptions = new List<int> { 7, 14, 21 };
-
+        Recipe recipe = new Recipe();
 
 
         public int GameLength
@@ -41,6 +41,7 @@ namespace LemonadeStandConsoleApp
             DisplayIntructions();
             player.SetName();
             SetGameDays();
+            DisplayRecipe();
 
 
 
@@ -61,9 +62,33 @@ namespace LemonadeStandConsoleApp
         }
         public void SetGameDays()
         {
-            UserInterface.DisplayMessage("How many days would you like your Lemonade Stand to be open? Please choose from: ");
-            UserInterface.DisplayList(gameLengthOptions);
-            gameLength = Convert.ToInt32(UserInterface.GetUserInput());
+            UserInterface.DisplayMessage("\nHow many days would you like your Lemonade Stand to be open? Please choose from: ");
+            UserInterface.DisplayIntList(gameLengthOptions);
+            GameLength = Convert.ToInt32(UserInterface.GetUserInput());
+            /////input comes in as string, set to in var. Characters cannot convert to int -- need to handle this exception. "try" "exception"?
+        }
+
+        public void DisplayRecipe()
+        {
+            UserInterface.DisplayMessage("\nYour current Lemonade Recipe is:");
+            UserInterface.DisplayDictionary(recipe.currentRecipe);
+        }
+        public void AskChangeRecipe()
+        {
+            UserInterface.DisplayMessage("\nWould you like to change your recipe?");
+            string input = UserInterface.GetUserInput().ToLower();
+            if(input == "no")
+            {
+                return;
+            }
+            if(input == "yes")
+            {
+                ChangeRecipe();
+            }
+        }
+        public void ChangeRecipe()
+        {
+
         }
     }
 }

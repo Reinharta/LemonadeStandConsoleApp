@@ -14,9 +14,17 @@ namespace LemonadeStandConsoleApp
             Console.WriteLine(message);
         }
 
-        public static void DisplayList(List <int> list)
+        public static void DisplayIntList(List <int> list)
         {
             list.ForEach(Console.WriteLine);
+        }
+
+        public static void DisplayDictionary(Dictionary<string, int> dictionary)
+        {
+            foreach (KeyValuePair<string, int> pair in dictionary)
+            {
+                Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
+            }
         }
 
         public static string GetUserInput()
