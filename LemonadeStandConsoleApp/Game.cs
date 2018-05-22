@@ -11,9 +11,11 @@ namespace LemonadeStandConsoleApp
 
 
         private Player player = new Player();
+        private Recipe recipe = new Recipe();
+        private Inventory inventory = new Inventory();
+
         private int gameLength;
         private List<int> gameLengthOptions = new List<int> { 7, 14, 21 };
-        Recipe recipe = new Recipe();
 
 
         public int GameLength
@@ -42,9 +44,13 @@ namespace LemonadeStandConsoleApp
             player.SetName();
             SetGameDays();
             DisplayRecipe();
+            DisplayInventory();
 
 
 
+            // display inventory
+            // ask if go to store
+            // if yes, display inventory again and ask what to buy - list ingredients w/ int val, accept int AND string
 
         }
 
@@ -69,7 +75,6 @@ namespace LemonadeStandConsoleApp
             int parsedInput;
             Int32.TryParse(input, out parsedInput);
             GameLength = parsedInput;
-            /////input comes in as string, set to in var. Characters cannot convert to int -- need to handle this exception. "try" "exception"?
         }
 
         public void DisplayRecipe()
@@ -97,11 +102,20 @@ namespace LemonadeStandConsoleApp
 
         public void DisplayInventory()
         {
+            UserInterface.DisplayMessage("\nYour current Inventory is:");
+            UserInterface.DisplayDictionary(inventory.currentInventory);
+        }
+        public void AskGoToStore()
+        {
+
+        }
+        public void GoToStore()
+        {
 
         }
         public void DisplayTotalMoney()
         {
-
+            UserInterface.DisplayMessage("");
         }
     }
 }

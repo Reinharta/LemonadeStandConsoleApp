@@ -21,6 +21,7 @@ namespace LemonadeStandConsoleApp
 
         public static void DisplayDictionary(Dictionary<string, int> dictionary)
         {
+            // rename to indicate types
             foreach (KeyValuePair<string, int> pair in dictionary)
             {
                 Console.WriteLine("{0}: {1}", pair.Key, pair.Value);

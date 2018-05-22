@@ -11,6 +11,7 @@ namespace LemonadeStandConsoleApp
         private int lemonsPerPitcher;
         private int sugarCupsPerPitcher;
         private int iceCubesPerCup;
+        private int cupsPerPitcher;
 
         public int LemonsPerPitcher
         {
@@ -45,8 +46,19 @@ namespace LemonadeStandConsoleApp
                 iceCubesPerCup = value;
             }
         }
+        public int CupsPerPitcher
+        {
+            get
+            {
+                return cupsPerPitcher;
+            }
+            set
+            {
+                iceCubesPerCup = value;
+            }
+        }
 
-        //Use dictionary to store recipe? ingredient as key, variable as value?
+
 
         public Dictionary<string, int> currentRecipe = new Dictionary<string, int>(){
             {"Lemons", 4 },
@@ -70,5 +82,11 @@ namespace LemonadeStandConsoleApp
             currentRecipe["Ice"] = iceCubesPerCup;
         }
         
+
+
+        // calculate # of cups per pitcher based on ice 
+        // cupsperpitcher 
+
+
     }
 }

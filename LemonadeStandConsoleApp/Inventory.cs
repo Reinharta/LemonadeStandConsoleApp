@@ -64,6 +64,7 @@ namespace LemonadeStandConsoleApp
             {"Ice", 0 }
         };
 
-
+        // add to inventory
+        // deduct from inventory
     }
 }

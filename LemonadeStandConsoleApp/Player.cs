@@ -85,9 +85,16 @@ namespace LemonadeStandConsoleApp
             PlayerName = UserInterface.GetUserInput();
         }
 
-        
+        public void CalculateTotalMoney()
+        {
+
+        }
+
+        //separate methods for deducting and adding to total money. 
+        //variable to track money spent in store 
+        //method to calculate profit ( total money - (starting money + $spent in store) )
 
 
-
+        // change types of money variables to double
     }
 }
