@@ -10,9 +10,10 @@ namespace LemonadeStandConsoleApp
     {
         private string playerName;
         private double startingMoney = 20.00;
-        private int earnedMoney;
-        private int totalMoney;
-        private int profit;
+        private double salesProceeds;
+        private double totalMoney;
+        private double expensesTotal;
+        private double profit;
 
         //Properties//
         public string PlayerName
@@ -43,18 +44,18 @@ namespace LemonadeStandConsoleApp
                 startingMoney = value;
             }
         }
-        public int EarnedMoney
+        public double SalesProceeds
         {
             get
             {
-                return earnedMoney;
+                return salesProceeds;
             }
             set
             {
-                earnedMoney = value;
+                salesProceeds = value;
             }
         }
-        public int TotalMoney
+        public double TotalMoney
         {
             get
             {
@@ -65,7 +66,14 @@ namespace LemonadeStandConsoleApp
                 totalMoney = value;
             }
         }
-        public int Profit
+        public double ExpensesTotal
+        {
+            get
+            {
+                return expensesTotal;
+            }
+        }
+        public double Profit
         {
             get
             {
@@ -77,24 +85,29 @@ namespace LemonadeStandConsoleApp
             }
         }
 
- 
-
         public void SetName()
         {
             UserInterface.DisplayMessage("Please enter Player Name.");
             PlayerName = UserInterface.GetUserInput();
         }
-
-        public void CalculateTotalMoney()
+        public void AddMoney()
         {
 
         }
+        public void DeductMoney()
+        {
 
-        //separate methods for deducting and adding to total money. 
-        //variable to track money spent in store 
+        }
+        public void AddToExpensesTotal(double moneySpent)
+        {
+            expensesTotal = (expensesTotal + moneySpent);
+        }
+
+
+
         //method to calculate profit ( total money - (starting money + $spent in store) )
 
 
-        // change types of money variables to double
+        
     }
 }

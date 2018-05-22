@@ -60,7 +60,7 @@ namespace LemonadeStandConsoleApp
 
 
 
-        public Dictionary<string, int> currentRecipe = new Dictionary<string, int>(){
+        Dictionary<string, int> currentRecipe = new Dictionary<string, int>(){
             {"Lemons", 4 },
             {"Sugar", 4 },
             {"Ice", 4 }
