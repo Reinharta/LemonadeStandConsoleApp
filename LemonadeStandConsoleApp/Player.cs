@@ -8,6 +8,7 @@ namespace LemonadeStandConsoleApp
 {
     class Player
     {
+
         private string playerName;
         private double startingMoney = 20.00;
         private double salesProceeds;
@@ -90,13 +91,13 @@ namespace LemonadeStandConsoleApp
             UserInterface.DisplayMessage("Please enter Player Name.");
             PlayerName = UserInterface.GetUserInput();
         }
-        public void AddMoney()
+        public void AddMoney(double moneyMade)
         {
-
+            totalMoney = (totalMoney + moneyMade);
         }
-        public void DeductMoney()
+        public void DeductMoney(double moneySpent)
         {
-
+            totalMoney = (totalMoney - moneySpent);
         }
         public void AddToExpensesTotal(double moneySpent)
         {

@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class Inventory
+    public static class Inventory
     {
-        private int lemonsInventory;
-        private int sugarInventory;
-        private int iceInventory;
-        private int cupsInventory;
+        private static int cupsInventory;
+        private static int lemonsInventory;
+        private static int sugarInventory;
+        private static int iceInventory;
 
-        public Dictionary<string, int> currentInventory = new Dictionary<string, int>(){
-            {"Lemons", 0 },
-            {"Sugar", 0 },
-            {"Ice", 0 }
-        };
 
-        public int LemonsInventory
+
+        public static int LemonsInventory
         {
             get
             {
@@ -30,7 +26,7 @@ namespace LemonadeStandConsoleApp
                 lemonsInventory = value;
             }
         }
-        public int SugarInventory
+        public static int SugarInventory
         {
             get
             {
@@ -41,32 +37,23 @@ namespace LemonadeStandConsoleApp
                 sugarInventory = value;
             }
         }
-        public int IceInventory
-        {
-            get
-            {
-                return iceInventory;
-            }
-            set
-            {
-                iceInventory = value;
-            }
+        public static int IceInventory {
+            get { return iceInventory; }
+            set { iceInventory = value; }
         }
-        public int CupsInventory
-        {
-            get
-            {
-                return cupsInventory;
-            }
-            set
-            {
-                cupsInventory = value;
-            }
+        public static int CupsInventory {
+            get { return cupsInventory; }
+            set { cupsInventory = value; }
         }
 
+        public static Dictionary<string, int> currentInventory = new Dictionary<string, int>(){
+            {"Cups", CupsInventory },
+            { "Lemons", LemonsInventory},
+            {"Sugar", SugarInventory },
+            {"Ice", IceInventory }
+        };
 
-
-        public void AddInventory(string product, int quantity)
+        public static void AddInventory(string product, int quantity)
         {
             product = UserInterface.UpperFirstLetter(product);
             if(currentInventory.ContainsKey(product))
@@ -78,7 +65,7 @@ namespace LemonadeStandConsoleApp
                 UserInterface.DisplayMessage("ERROR: product given does not match any product keys.");
             }
         }
-        public void ReduceInventory(string product, int quantity)
+        public static void ReduceInventory(string product, int quantity)
         {
             product = UserInterface.UpperFirstLetter(product);
             if (currentInventory.ContainsKey(product))

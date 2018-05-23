@@ -21,6 +21,7 @@ namespace LemonadeStandConsoleApp
 
         public static void DisplayMessage(string message)
         {
+            Console.WriteLine("\n");
             Console.WriteLine(message);
         }
 
@@ -31,12 +32,18 @@ namespace LemonadeStandConsoleApp
 
         public static void DisplayDictionary<T>(Dictionary<string, T> dictionary)
         {
-
+            Console.WriteLine("\n");
             foreach (KeyValuePair<string, T> pair in dictionary)
             {
                 Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
             }
         }
+        //public static void DisplayDictionaryEntry(Dictionary<string, double> dictionary)
+        //{
+        //    foreach (KeyValuePair<string, double> pair in dictionary){
+        //        Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
+        //    }
+        //}
 
         public static void StoreMenu()
         {

@@ -10,9 +10,9 @@ namespace LemonadeStandConsoleApp
     {
 
 
-        private Player player = new Player();
-        private Recipe recipe = new Recipe();
-        private Inventory inventory = new Inventory();
+        public static Player player = new Player();
+        public static Recipe recipe = new Recipe();
+
 
         private int gameLength;
         private List<int> gameLengthOptions = new List<int> { 7, 14, 21 };
@@ -68,9 +68,11 @@ namespace LemonadeStandConsoleApp
             UserInterface.DisplayMessage(instructions.ToString());
 
         }
+
+        //GAME LENGTH
         public void SetGameDays()
         {
-            UserInterface.DisplayMessage("\nHow many days would you like your Lemonade Stand to be open? Please choose from: ");
+            UserInterface.DisplayMessage("How many days would you like your Lemonade Stand to be open? Please choose from: ");
             UserInterface.DisplayIntList(gameLengthOptions);
             string input = UserInterface.GetUserInput();
             int parsedInput;
@@ -78,14 +80,11 @@ namespace LemonadeStandConsoleApp
             GameLength = parsedInput;
         }
 
-        public void DisplayRecipe()
-        {
-            UserInterface.DisplayMessage("\nYour current Lemonade Recipe is:");
-            UserInterface.DisplayDictionary(recipe.CurrentRecipe);
-        }
+
+        //RECIPE
         public void AskChangeRecipe()
         {
-            UserInterface.DisplayMessage("\nWould you like to change your recipe?");
+            UserInterface.DisplayMessage("Would you like to change your recipe?");
             string input = UserInterface.GetUserInput().ToLower();
             if(input == "no")
             {
@@ -101,11 +100,9 @@ namespace LemonadeStandConsoleApp
 
         }
 
-        public void DisplayInventory()
-        {
-            UserInterface.DisplayMessage("\nYour current Inventory is:");
-            UserInterface.DisplayDictionary(inventory.currentInventory);
-        }
+
+
+        // STORE
         public void AskGoToStore()
         {
             UserInterface.DisplayMessage("Would you like to purchase any supplies from the store?");
@@ -125,11 +122,45 @@ namespace LemonadeStandConsoleApp
         }
         public void GoToStore()
         {
+            Store.StoreMenu();
+            DisplayInventory();
+            DisplayTotalMoney();
+            BuyNextSupply();
+        }
+        public void BuyNextSupply() { 
+            UserInterface.DisplayMessage("Would you like to purchase more supplies?");
+            string input = UserInterface.GetUserInput();
+            input = UserInterface.UpperFirstLetter(input);
+            if(input == "Yes")
+            {
+                GoToStore();
+            }
+            if(input == "No")
+            {
+                return;
+            }
+            else
+            {
+                UserInterface.DisplayMessage("Please try again, entering either Yes or No.");
+                BuyNextSupply();
 
+            }
+        }
+
+        //DISPLAYS - CURRENT STATUS
+        public void DisplayInventory()
+        {
+            UserInterface.DisplayMessage("Your current Inventory is:");
+            UserInterface.DisplayDictionary(Inventory.currentInventory);
         }
         public void DisplayTotalMoney()
         {
-            UserInterface.DisplayMessage("");
+            UserInterface.DisplayMessage("Your current account balance is: $" + player.TotalMoney);
+        }
+        public void DisplayRecipe()
+        {
+            UserInterface.DisplayMessage("Your current Lemonade Recipe is:");
+            UserInterface.DisplayDictionary(recipe.CurrentRecipe);
         }
     }
 }
