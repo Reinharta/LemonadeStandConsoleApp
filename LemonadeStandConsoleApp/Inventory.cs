@@ -13,6 +13,12 @@ namespace LemonadeStandConsoleApp
         private int iceInventory;
         private int cupsInventory;
 
+        public Dictionary<string, int> currentInventory = new Dictionary<string, int>(){
+            {"Lemons", 0 },
+            {"Sugar", 0 },
+            {"Ice", 0 }
+        };
+
         public int LemonsInventory
         {
             get
@@ -58,13 +64,33 @@ namespace LemonadeStandConsoleApp
             }
         }
 
-        public Dictionary<string, int> currentInventory = new Dictionary<string, int>(){
-            {"Lemons", 0 },
-            {"Sugar", 0 },
-            {"Ice", 0 }
-        };
 
-        // add to inventory
-        // deduct from inventory
+
+        public void AddInventory(string product, int quantity)
+        {
+            product = UserInterface.UpperFirstLetter(product);
+            if(currentInventory.ContainsKey(product))
+            {
+                currentInventory[product] = currentInventory[product] + quantity;
+            }
+            else
+            {
+                UserInterface.DisplayMessage("ERROR: product given does not match any product keys.");
+            }
+        }
+        public void ReduceInventory(string product, int quantity)
+        {
+            product = UserInterface.UpperFirstLetter(product);
+            if (currentInventory.ContainsKey(product))
+            {
+                currentInventory[product] = currentInventory[product] - quantity;
+            }
+            else
+            {
+                UserInterface.DisplayMessage("ERROR: product given does not match any product keys.");
+            }
+
+        }
+
     }
 }

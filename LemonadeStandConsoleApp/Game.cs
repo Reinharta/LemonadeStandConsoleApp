@@ -45,6 +45,7 @@ namespace LemonadeStandConsoleApp
             SetGameDays();
             DisplayRecipe();
             DisplayInventory();
+            AskGoToStore();
 
 
 
@@ -80,7 +81,7 @@ namespace LemonadeStandConsoleApp
         public void DisplayRecipe()
         {
             UserInterface.DisplayMessage("\nYour current Lemonade Recipe is:");
-            UserInterface.DisplayDictionary(recipe.currentRecipe);
+            UserInterface.DisplayDictionary(recipe.CurrentRecipe);
         }
         public void AskChangeRecipe()
         {
@@ -107,7 +108,20 @@ namespace LemonadeStandConsoleApp
         }
         public void AskGoToStore()
         {
-
+            UserInterface.DisplayMessage("Would you like to purchase any supplies from the store?");
+            string input = UserInterface.GetUserInput().ToLower();
+            if (input == "yes")
+            {
+                GoToStore();
+            }
+            if (input == "no")
+            {
+                return;
+            }
+            else{
+                UserInterface.DisplayMessage("Please try again, entering either Yes or No.");
+                AskGoToStore();
+            }
         }
         public void GoToStore()
         {
