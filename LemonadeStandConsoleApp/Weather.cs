@@ -22,8 +22,8 @@ namespace LemonadeStandConsoleApp
             "Rain",
             "Thunderstorms"
         };
-        private List<int> sevenDayTemperatures = new List<int>();
-        private List<string> sevenDayForecast = new List<string>();
+        private int[] sevenDayTemperatureArray = new int[7];
+        private string[] sevenDayForecastArray = new string[7];
 
 
         //PROPERTIES
@@ -41,38 +41,56 @@ namespace LemonadeStandConsoleApp
                 return todayActualTemperature;
             }
         }
-        public List<string> SevenDayForecast
+        public string[] SevenDayForecastArray
         {
-            get { return sevenDayForecast; }
+            get { return sevenDayForecastArray; }
         }
-        public List<int> SevenDayTemperatures
+        public int[] SevenDayTemperatureArray
         {
             get
             {
-                return sevenDayTemperatures;
+                return sevenDayTemperatureArray;
             }
         }
-        
 
-        public void CreateSevenDayPrediction()
+
+        public void CreateSevenDayForecast()
         {
-            for (int i = 0; sevenDayForecast. < 8; i++) //identify which list i belongs to
+            for (int i = 0; i < sevenDayForecastArray.Length; i++) 
             {
-                AddToForecastList();
+                string condition = CreateForecastInstance();
+                sevenDayForecastArray[i] = condition;
             }
-
-
+        }
+        public void CreateSevenDayTemperatures()
+        {
+            for (int i = 0; i < sevenDayTemperatureArray.Length; i++)
+            {
+                int degrees = CreateTemperatureInstance();
+                sevenDayTemperatureArray[i] = degrees;
+            }
         }
 
-        public void AddToForecastList()
+        public string CreateForecastInstance()
         {
             int conditionIndex = random.Next(0, (forecastList.Count + 1));
             string condition = forecastList.ElementAt(conditionIndex);
-            sevenDayForecast.Add(condition);
+            return condition;
         }
-        public void AddToTemperatureList()
+        public int CreateTemperatureInstance()
         {
-            int newTemperature = random.Next(minTemperature, maxTemperature + 1);
+            int degrees = random.Next(minTemperature, maxTemperature + 1);
+            return degrees;
+        }
+
+        //move this to game or UI, passing object parameters as needed
+        // cntrl then type replaces char
+        public void AddEndTemperatureList()
+        {
+            while (){
+                int newTemperature = CreateTemperatureInstance();
+                sevenDayTemperatureArray[6] = newTemperature;
+            }
         }
 
         // create 7 day forecast prediction (plan for end of game <7 days left), (i=0, key/val, must not clear at new instances. Remove i=o, add to end)

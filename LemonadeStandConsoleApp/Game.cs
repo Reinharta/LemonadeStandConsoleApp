@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class Game
+    public class Game
     {
 
 
@@ -15,6 +15,7 @@ namespace LemonadeStandConsoleApp
 
 
         private int gameLength;
+        private int remainingDays;
         private List<int> gameLengthOptions = new List<int> { 7, 14, 21 };
 
 
@@ -37,23 +38,40 @@ namespace LemonadeStandConsoleApp
                 }
             }
         }
+        public int RemainingDays
+        {
+            get
+            {
+                return remainingDays;
+            }
+            set
+            {
+                remainingDays = value;
+            }
+        }
 
         public void SetupGame()
         {
             DisplayIntructions();
             player.SetName();
             SetGameDays();
-            UserInterface.DisplayRecipe();
-            UserInterface.DisplayInventory();
+            UserInterface.DisplayRecipe(player);
+            UserInterface.DisplayInventory(player);
             AskGoToStore();
-            UserInterface.DisplayRecipe();
+            UserInterface.DisplayRecipe(player);
             AskChangeRecipe();
-            UserInterface.DisplayCurrentStatus();
-            UserInterface.MainMenu();
+            UserInterface.DisplayCurrentStatus(player);
+            RunMainMenu();
 
 
+        }
 
+        public void RunGame()
+        {
 
+        }
+        public void RunDay()
+        {
 
         }
 
@@ -69,6 +87,32 @@ namespace LemonadeStandConsoleApp
             instructions.AppendLine("proper planning.");
             UserInterface.DisplayMessage(instructions.ToString());
 
+        }
+
+        public void RunMainMenu()
+        {
+            string input = UserInterface.MainMenu();
+            if (input == "1")
+            {
+                UserInterface.DisplayCurrentStatus(player);
+                RunMainMenu();
+            }
+            if (input == "2")
+            {
+                Store.StoreMenu(player);
+            }
+            if (input == "3")
+            {
+                recipe.ChangeRecipeMenu();
+            }
+            if (input == "4")
+            {
+                //add forecast disp
+            }
+            if (input == "5")
+            {
+                //add run game
+            }
         }
 
         //GAME LENGTH
@@ -127,9 +171,9 @@ namespace LemonadeStandConsoleApp
         }
         public void GoToStore()
         {
-            Store.StoreMenu();
-            UserInterface.DisplayInventory();
-            UserInterface.DisplayTotalMoney();
+            Store.StoreMenu(player);
+            UserInterface.DisplayInventory(player);
+            UserInterface.DisplayTotalMoney(player);
             BuyNextSupply();
         }
         public void BuyNextSupply() { 

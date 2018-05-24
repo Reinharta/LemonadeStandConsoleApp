@@ -46,31 +46,10 @@ namespace LemonadeStandConsoleApp
         //}
 
 
-        public static void MainMenu()
+        public static string MainMenu()
         {
             DisplayMessage("Main Menu:\nEnter Selection Number\n(1) View Current Stats\n(2) Store\n(3) Change Recipe\n(4) View Forecast\n(5) Play");
-            string input = GetUserInput();
-            if(input == "1")
-            {
-                DisplayCurrentStatus();
-                MainMenu();
-            }
-            if(input == "2")
-            {
-                Store.StoreMenu();
-            }
-            if(input == "3")
-            {
-                Game.recipe.ChangeRecipeMenu();
-            }
-            if(input == "4")
-            {
-                //add forecast disp
-            }
-            if(input == "5")
-            {
-                //add start day
-            }
+            return GetUserInput();
         }
 
         public static void StoreMenu()
@@ -87,25 +66,25 @@ namespace LemonadeStandConsoleApp
         //DISPLAYS
 
 
-        public static void DisplayCurrentStatus()
+        public static void DisplayCurrentStatus(Player player)
         {
-            DisplayTotalMoney();
-            DisplayInventory();
-            DisplayRecipe();
+            DisplayTotalMoney(player);
+            DisplayInventory(player);
+            DisplayRecipe(player);
         }
-        public static void DisplayInventory()
+        public static void DisplayInventory(Player player)
         {
             UserInterface.DisplayMessage("Your current Inventory is:");
-            UserInterface.DisplayDictionary(Inventory.currentInventory);
+            UserInterface.DisplayDictionary(player.inventory.CurrentInventory);
         }
-        public static void DisplayTotalMoney()
+        public static void DisplayTotalMoney(Player player)
         {
-            UserInterface.DisplayMessage("Your current account balance is: $" + Game.player.TotalMoney);
+            UserInterface.DisplayMessage("Your current account balance is: $" + player.TotalMoney);
         }
-        public static void DisplayRecipe()
+        public static void DisplayRecipe(Player player)
         {
             UserInterface.DisplayMessage("Your current Lemonade Recipe is:");
-            UserInterface.DisplayDictionary(Game.recipe.currentRecipe);
+            UserInterface.DisplayDictionary(player.recipe.currentRecipe);
         }
         public static void DisplayRemainingDays()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class Recipe
+    public class Recipe
     {
         private int lemonsPerPitcher;
         private int sugarCupsPerPitcher;

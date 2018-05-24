@@ -84,14 +84,14 @@ namespace LemonadeStandConsoleApp
         //RunStore method to chain methods below?
 
 
-        public static void StoreMenu()
+        public static void StoreMenu(Player player)
         {
             UserInterface.StoreMenu();
             string input = UserInterface.UpperFirstLetter(UserInterface.GetUserInput());
-            AssessMenuInput(input);
+            AssessMenuInput(input, player);
         }
 
-        public static void AssessMenuInput (string input) {
+        public static void AssessMenuInput (string input, Player player) {
 
             if (input == "Exit" || input == "5")
             {
@@ -99,7 +99,7 @@ namespace LemonadeStandConsoleApp
             }
             if (StoreOfferings.ContainsKey(input))
             {
-                PurchaseProduct(input);
+                PurchaseProduct(input, player);
             }
             else
             {
@@ -108,11 +108,11 @@ namespace LemonadeStandConsoleApp
                 if (parsedInput == 2) { input = "Lemons"; }
                 if (parsedInput == 3) { input = "Sugar"; }
                 if (parsedInput == 4) { input = "Ice"; }
-                PurchaseProduct(input);
+                PurchaseProduct(input, player);
             }
         }
 
-        public static void PurchaseProduct(string productKey)
+        public static void PurchaseProduct(string productKey, Player player)
         {
             UserInterface.DisplayMessage("Please enter the quantity of " + productKey + " you would like to purchase.\nNOTE: Sugar quantity is in cups, Ice quantity is in cubes.");
             UserInterface.DisplayDictionary(StoreOfferings[productKey]);
@@ -125,43 +125,15 @@ namespace LemonadeStandConsoleApp
             else
             {
                 UserInterface.DisplayMessage("Invalid input. Please try again.");
-                PurchaseProduct(productKey);
+                PurchaseProduct(productKey, player);
             }
 
-            CheckOut(productKey, quantityInput, cost);
+            player.CheckOut(productKey, quantityInput, cost, player);
         }
 
-        public static void CheckOut(string productName, string strQuantity, double cost)
-        {
-            bool canPurchase = VerifyFunds(cost);
-            Int32.TryParse(strQuantity, out int intQty);
-            if (canPurchase is true)
-            {
-                Inventory.AddInventory(productName, intQty);
-                player.DeductMoney(cost);
-                Game.player.AddToExpensesTotal(cost);
-            }
-            //static class causing those issues ^^
-            if(canPurchase is false)
-            {
-                UserInterface.DisplayMessage("You do not have enough money to make this purchase.");
-                PurchaseProduct(productName);
-            }
 
-
-        }
        
-        public static bool VerifyFunds(double productCost)
-        {
-            if(Game.player.TotalMoney >= productCost)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         // compare totalmoney to cost of product and deny purchase if not enough funds.
         
 

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class Player
+    public class Player
     {
+        public Inventory inventory = new Inventory();
+        public Recipe recipe = new Recipe();
 
         private string playerName;
         private double startingMoney = 20.00;
@@ -15,6 +17,8 @@ namespace LemonadeStandConsoleApp
         private double totalMoney;
         private double expensesTotal;
         private double profit;
+        //private double currentRecipe;
+        
 
         //Properties//
         public string PlayerName
@@ -104,12 +108,39 @@ namespace LemonadeStandConsoleApp
         {
             expensesTotal = (expensesTotal + moneySpent);
         }
-
-
-
         //method to calculate profit ( total money - (starting money + $spent in store) )
 
 
-        
+        public bool VerifyFunds(double productCost)
+        {
+            if (TotalMoney >= productCost)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void CheckOut(string productName, string strQuantity, double cost, Player player)
+        {
+            bool canPurchase = VerifyFunds(cost);
+            Int32.TryParse(strQuantity, out int intQty);
+            if (canPurchase is true)
+            {
+                inventory.AddInventory(productName, intQty);
+                DeductMoney(cost);
+                AddToExpensesTotal(cost);
+            }
+            if (canPurchase is false)
+            {
+                UserInterface.DisplayMessage("You do not have enough money to make this purchase.");
+                Store.PurchaseProduct(productName, player);
+            }
+
+
+        }
+
     }
 }
