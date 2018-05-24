@@ -60,27 +60,61 @@ namespace LemonadeStandConsoleApp
 
 
 
-        Dictionary<string, int> currentRecipe = new Dictionary<string, int>(){
+        public Dictionary<string, int> currentRecipe = new Dictionary<string, int>(){
             {"Lemons", 4 },
             {"Sugar", 4 },
             {"Ice", 4 }
         };
 
-        public Dictionary<string,int> CurrentRecipe
+        public void ChangeRecipeMenu()
         {
-            get
+            string key = "";
+            
+            UserInterface.DisplayMessage("What would you like to change?\n(1) Lemons\n(2) Sugar\n(3) Ice\n(4) Exit");
+            string input = UserInterface.GetUserInput();
+            input = UserInterface.UpperFirstLetter(input);
+            if (input == "4" || input == "Exit")
             {
-                return currentRecipe;
+                return;
             }
-        }
+            if (currentRecipe.ContainsKey(input)){
+                key = input;
+            }
+            else
+            {
+                Int32.TryParse(input, out int parsedInput);
+                if (parsedInput == 1) { key = "Lemons"; }
+                if (parsedInput == 2) { key = "Sugar"; }
+                if (parsedInput == 3) { key = "Ice"; }
+            }
+            UserInterface.DisplayMessage("Please enter new desired quantity of " + key +".");
+            Int32.TryParse(UserInterface.GetUserInput(), out int qty);
+            ChangeRecipe(key, qty);
+            }
 
+        
 
-        public void ChangeRecipeValues()
+        public void ChangeRecipe(string key, int value)
         {
-            currentRecipe["Lemons"] = lemonsPerPitcher;
-            currentRecipe["Sugar"] = sugarCupsPerPitcher;
-            currentRecipe["Ice"] = iceCubesPerCup;
+
+            if (currentRecipe.ContainsKey(key) & value >= 0)
+            {
+                currentRecipe[key] = value;
+            }
+            else
+            {
+                UserInterface.DisplayMessage("Invalid Input. Please try again.");
+            }
+            ChangeRecipeMenu();
         }
+
+
+        //public void ChangeRecipeValues()
+        //{
+        //    currentRecipe["Lemons"] = lemonsPerPitcher;
+        //    currentRecipe["Sugar"] = sugarCupsPerPitcher;
+        //    currentRecipe["Ice"] = iceCubesPerCup;
+        //}
         
 
 

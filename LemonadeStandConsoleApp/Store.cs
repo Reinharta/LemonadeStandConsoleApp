@@ -138,9 +138,10 @@ namespace LemonadeStandConsoleApp
             if (canPurchase is true)
             {
                 Inventory.AddInventory(productName, intQty);
-                Game.player.DeductMoney(cost);
+                player.DeductMoney(cost);
                 Game.player.AddToExpensesTotal(cost);
             }
+            //static class causing those issues ^^
             if(canPurchase is false)
             {
                 UserInterface.DisplayMessage("You do not have enough money to make this purchase.");

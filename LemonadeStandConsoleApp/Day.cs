@@ -8,6 +8,8 @@ namespace LemonadeStandConsoleApp
 {
     class Day
     {
+
+
         private int salesMadeNum;
         private int salesProceeds;
         private int pricePerCup;

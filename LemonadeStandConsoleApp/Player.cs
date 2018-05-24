@@ -90,6 +90,7 @@ namespace LemonadeStandConsoleApp
         {
             UserInterface.DisplayMessage("Please enter Player Name.");
             PlayerName = UserInterface.GetUserInput();
+            TotalMoney = StartingMoney;
         }
         public void AddMoney(double moneyMade)
         {
