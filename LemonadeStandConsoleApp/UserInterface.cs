@@ -71,25 +71,34 @@ namespace LemonadeStandConsoleApp
             DisplayTotalMoney(player);
             DisplayInventory(player);
             DisplayRecipe(player);
+
         }
         public static void DisplayInventory(Player player)
         {
-            UserInterface.DisplayMessage("Your current Inventory is:");
-            UserInterface.DisplayDictionary(player.inventory.CurrentInventory);
+            DisplayMessage("Your current Inventory is:");
+            DisplayDictionary(player.inventory.CurrentInventory);
         }
         public static void DisplayTotalMoney(Player player)
         {
-            UserInterface.DisplayMessage("Your current account balance is: $" + player.TotalMoney);
+            DisplayMessage("Your current account balance is: $" + player.TotalMoney);
         }
         public static void DisplayRecipe(Player player)
         {
-            UserInterface.DisplayMessage("Your current Lemonade Recipe is:");
-            UserInterface.DisplayDictionary(player.recipe.currentRecipe);
+            DisplayMessage("Your current Lemonade Recipe is:");
+            DisplayDictionary(player.recipe.currentRecipe);
         }
         public static void DisplayRemainingDays()
         {
             //disp remaining days count
         }
-
+        public static void DisplayCurrentPrice(double pricePerCup)
+        {
+            DisplayMessage("Price: $" + pricePerCup);
+        }
+        public static void DisplayTodaysWeather(List<object> todaysWeather)
+        {
+            DisplayMessage("Today's Weather: ");
+            DisplayList<object>(todaysWeather);
+        }
     }
 }

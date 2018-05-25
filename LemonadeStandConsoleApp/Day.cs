@@ -8,15 +8,37 @@ namespace LemonadeStandConsoleApp
 {
     class Day
     {
+        Weather weather = new Weather();
 
-
-        private int salesMadeNum;
-        private int salesProceeds;
-        private int pricePerCup;
+        private double salesMadeNum;
+        private double salesProceeds;
+        private double pricePerCup = 0.25;
         private int maxPotentialCustomers;
         private int custSatisfactionPercent;
+        private int todaysTemperature;
+
+        List<object> todaysWeather = new List<object>();
+
+        public void CreateDay(Player player)
+        {
+            CreateTodaysWeather();
+            UserInterface.DisplayTodaysWeather(todaysWeather);
+            UserInterface.DisplayRecipe(player);
+            UserInterface.DisplayCurrentPrice(pricePerCup);
+            UserInterface.DisplayInventory(player);
 
 
+        }
+
+        private void CreateTodaysWeather()
+        {
+            todaysWeather.Add(weather.TodayActualTemperature);
+            todaysWeather.Add(weather.TodayActualForecast);
+        }
+        private void SetPrice()
+        {
+            UserInterface.DisplayMessage("");
+        }
         private int GetMaxCustomers(int highTemperature, string forecast, int custSatisfactionPercent)
         {
 
@@ -29,6 +51,7 @@ namespace LemonadeStandConsoleApp
 
             return custSatisfactionPercent;
         }
+
 
         // display total profit (from player) at end of each day?
         // at end of each day - display # sales made, sales earnings, profit margin to date, total money (account balance?)

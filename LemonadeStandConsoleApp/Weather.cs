@@ -11,9 +11,7 @@ namespace LemonadeStandConsoleApp
         Random random = new Random();
 
         private string todayActualForecast;
-        // string list of possible forecast values
         private int todayActualTemperature;
-        // limit w/ min and max
         private int maxTemperature = 90;
         private int minTemperature = 50;
         private List<string> forecastList = new List<string>() {
@@ -85,12 +83,27 @@ namespace LemonadeStandConsoleApp
 
         //move this to game or UI, passing object parameters as needed
         // cntrl then type replaces char
-        public void AddEndTemperatureList()
+        public void AddEndTemperatureList(int gameLength)
         {
-            while (){
+            while (gameLength >= 7){
                 int newTemperature = CreateTemperatureInstance();
                 sevenDayTemperatureArray[6] = newTemperature;
             }
+        }
+
+        public void CreateTodaysWeather()
+        {
+            int forecastSelecter = random.Next(0, 9);
+            if (forecastSelecter == 0 || forecastSelecter > forecastList.Count)
+            {
+                todayActualForecast = SevenDayForecastArray[0];
+            }
+            else
+            {
+                todayActualForecast = forecastList.ElementAt(forecastSelecter);
+            }
+
+            todayActualTemperature = (random.Next(0, 6) + SevenDayTemperatureArray[0]);
         }
 
         // create 7 day forecast prediction (plan for end of game <7 days left), (i=0, key/val, must not clear at new instances. Remove i=o, add to end)
