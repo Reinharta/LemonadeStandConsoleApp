@@ -61,18 +61,36 @@ namespace LemonadeStandConsoleApp
             UserInterface.DisplayRecipe(player);
             AskChangeRecipe();
             UserInterface.DisplayCurrentStatus(player);
-            RunMainMenu();
             RunGame();
 
         }
 
         public void RunGame()
         {
+            CreateNewDay();
+            RunMainMenu(day);
             RunDay();
+        }
+
+        public void CreateNewDay()
+        {
+            if (DayCount == 1)
+            {
+
+            }
+            if (DayCount > 1 & DayCount <= GameLength)
+            {
+                Day day = new Day();
+                day.CreateDay(player);
+            }
+            else
+            {
+                EndGame();
+            }
         }
         public void RunDay()
         {
-
+            CreateNewDay();
         }
 
         public void DisplayIntructions()
@@ -109,7 +127,7 @@ namespace LemonadeStandConsoleApp
             }
             if (input == "4")
             {
-                //add forecast disp
+                
             }
             if (input == "5")
             {
@@ -198,6 +216,10 @@ namespace LemonadeStandConsoleApp
             }
         }
 
+        public void EndGame()
+        {
+
+        }
 
     }
 }

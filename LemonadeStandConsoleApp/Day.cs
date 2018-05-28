@@ -19,9 +19,10 @@ namespace LemonadeStandConsoleApp
 
         List<object> todaysWeather = new List<object>();
 
-        public void CreateDay(Player player)
+        public void CreateFirstDay(Player player, int gameLength)
         {
-            CreateTodaysWeather();
+            CreateTodaysWeather(gameLength);
+            weather.DisplayWeatherPrediction();
             UserInterface.DisplayTodaysWeather(todaysWeather);
             UserInterface.DisplayRecipe(player);
             UserInterface.DisplayCurrentPrice(pricePerCup);
@@ -29,11 +30,14 @@ namespace LemonadeStandConsoleApp
 
 
         }
+        
 
-        private void CreateTodaysWeather()
+        private void CreateTodaysWeather(int gameLength)
         {
             todaysWeather.Add(weather.TodayActualTemperature);
             todaysWeather.Add(weather.TodayActualForecast);
+            weather.UpdateSevenDayPrediction(gameLength);
+           
         }
         private void SetPrice()
         {

@@ -10,7 +10,7 @@ namespace LemonadeStandConsoleApp
     {
         public static void Main(string[] args)
         {
-            Game newGame = new Game();
+             Game newGame = new Game();
 
 
 
