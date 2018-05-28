@@ -81,13 +81,20 @@ namespace LemonadeStandConsoleApp
             return degrees;
         }
 
-        //move this to game or UI, passing object parameters as needed
-        // cntrl then type replaces char
+        //end day
         public void AddEndTemperatureList(int gameLength)
         {
             while (gameLength >= 7){
                 int newTemperature = CreateTemperatureInstance();
                 sevenDayTemperatureArray[6] = newTemperature;
+            }
+        }
+        public void AddEndForecastList(int gameLength)
+        {
+            while (gameLength >= 7)
+            {
+                string newForecast = CreateForecastInstance();
+                sevenDayForecastArray[6] = newForecast;
             }
         }
 
@@ -104,6 +111,17 @@ namespace LemonadeStandConsoleApp
             }
 
             todayActualTemperature = (random.Next(0, 6) + SevenDayTemperatureArray[0]);
+        }
+
+        public void DisplayTodaysWeather()
+        {
+            UserInterface.DisplayMessage("Today's weather: " + TodayActualTemperature + " degrees and " + TodayActualForecast);
+        }
+        public void DisplayWeatherPrediction()
+        {
+            UserInterface.DisplayMessage("7 Day Forecast:");
+            UserInterface.DisplayArray(SevenDayForecastArray);
+            UserInterface.DisplayArray(SevenDayTemperatureArray);
         }
 
         // create 7 day forecast prediction (plan for end of game <7 days left), (i=0, key/val, must not clear at new instances. Remove i=o, add to end)

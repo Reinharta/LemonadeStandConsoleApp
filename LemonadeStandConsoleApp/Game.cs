@@ -15,7 +15,7 @@ namespace LemonadeStandConsoleApp
 
 
         private int gameLength;
-        private int remainingDays;
+        private int dayCount;
         private List<int> gameLengthOptions = new List<int> { 7, 14, 21 };
 
 
@@ -38,15 +38,15 @@ namespace LemonadeStandConsoleApp
                 }
             }
         }
-        public int RemainingDays
+        public int DayCount
         {
             get
             {
-                return remainingDays;
+                return dayCount;
             }
             set
             {
-                remainingDays = value;
+                dayCount = value;
             }
         }
 
@@ -62,13 +62,13 @@ namespace LemonadeStandConsoleApp
             AskChangeRecipe();
             UserInterface.DisplayCurrentStatus(player);
             RunMainMenu();
-
+            RunGame();
 
         }
 
         public void RunGame()
         {
-
+            RunDay();
         }
         public void RunDay()
         {
@@ -100,10 +100,12 @@ namespace LemonadeStandConsoleApp
             if (input == "2")
             {
                 Store.StoreMenu(player);
+                RunMainMenu();
             }
             if (input == "3")
             {
                 recipe.ChangeRecipeMenu();
+                RunMainMenu();
             }
             if (input == "4")
             {
@@ -111,7 +113,7 @@ namespace LemonadeStandConsoleApp
             }
             if (input == "5")
             {
-                //add run game
+                return;
             }
         }
 
@@ -119,7 +121,7 @@ namespace LemonadeStandConsoleApp
         public void SetGameDays()
         {
             UserInterface.DisplayMessage("How many days would you like your Lemonade Stand to be open? Please choose from: ");
-            UserInterface.DisplayList(gameLengthOptions);
+            UserInterface.DisplayIntList(gameLengthOptions);
             string input = UserInterface.GetUserInput();
             int parsedInput;
             Int32.TryParse(input, out parsedInput);

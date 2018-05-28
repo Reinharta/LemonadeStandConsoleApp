@@ -115,7 +115,7 @@ namespace LemonadeStandConsoleApp
         public static void PurchaseProduct(string productKey, Player player)
         {
             UserInterface.DisplayMessage("Please enter the quantity of " + productKey + " you would like to purchase.\nNOTE: Sugar quantity is in cups, Ice quantity is in cubes.");
-            UserInterface.DisplayDictionary(StoreOfferings[productKey]);
+            UserInterface.DisplayQtyPriceDictionary(StoreOfferings[productKey]);
             string quantityInput = UserInterface.GetUserInput();
             double cost = 0;
             if (StoreOfferings[productKey].ContainsKey(quantityInput))

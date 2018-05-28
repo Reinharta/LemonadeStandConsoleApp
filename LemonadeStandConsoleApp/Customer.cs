@@ -8,6 +8,8 @@ namespace LemonadeStandConsoleApp
 {
     class Customer
     {
+        //constructor w/ day/weather parameter
+
         // notebook
     }
 }

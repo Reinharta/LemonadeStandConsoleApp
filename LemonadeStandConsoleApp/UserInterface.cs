@@ -19,23 +19,37 @@ namespace LemonadeStandConsoleApp
             return char.ToUpper(str[0]) + str.Substring(1);
         }
 
+        //DISPLAYS
+
         public static void DisplayMessage(string message)
         {
             Console.WriteLine("\n");
             Console.WriteLine(message);
         }
 
-        public static void DisplayList<T>(List <T> list)
+        public static void DisplayIntList(List <int> list)
         {
-            list.ForEach(i => Console.WriteLine("{0}\t, i"));
+            list.ForEach(Console.WriteLine);
+        }
+        public static void DisplayStrList(List<string> list)
+        {
+            list.ForEach(Console.WriteLine);
         }
 
         public static void DisplayDictionary<T>(Dictionary<string, T> dictionary)
         {
-            Console.WriteLine("\n");
+            //Console.WriteLine("\n");
             foreach (KeyValuePair<string, T> pair in dictionary)
             {
                 Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
+            }
+        }
+        public static void DisplayQtyPriceDictionary<T>(Dictionary<string, T> dictionary)
+        {
+            Console.WriteLine("\n");
+            foreach (KeyValuePair<string, T> pair in dictionary)
+            {
+                Console.WriteLine("QTY {0}: ${1}", pair.Key, pair.Value);
             }
         }
         //public static void DisplayDictionaryEntry(Dictionary<string, double> dictionary)
@@ -44,7 +58,12 @@ namespace LemonadeStandConsoleApp
         //        Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
         //    }
         //}
+        public static void DisplayArray(Array array)
+        {
+            Console.WriteLine(string.Join("\n", array));
+        }
 
+            //MENUS
 
         public static string MainMenu()
         {
@@ -98,7 +117,7 @@ namespace LemonadeStandConsoleApp
         public static void DisplayTodaysWeather(List<object> todaysWeather)
         {
             DisplayMessage("Today's Weather: ");
-            DisplayList<object>(todaysWeather);
+            todaysWeather.ForEach(Console.WriteLine);
         }
     }
 }
