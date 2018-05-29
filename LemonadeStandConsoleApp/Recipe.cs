@@ -119,7 +119,17 @@ namespace LemonadeStandConsoleApp
 
 
         // calculate # of cups per pitcher based on ice 
-        // cupsperpitcher 
+        public void CalculateCupsInPitcher()
+        {
+            if (currentRecipe["Ice"] > 6)
+            {
+                CupsPerPitcher = 16;
+            }
+            else
+            {
+                CupsPerPitcher = 12;
+            }
+        } 
 
 
     }

@@ -9,6 +9,13 @@ namespace LemonadeStandConsoleApp
     public static class UserInterface
     {
 
+        // SOLID: This entire class really helped me practice using the Single Responsibility Principle. I tried to make display methods for each generalized
+        // type of data. I was successful in making a Display Dictionary method with a general T type, so this could be used for any typed Dict. I struggled, however,
+        // with making the same type of generalized method to display lists. I felt that the generally typed methods here also may be considered as utilizing the 
+        // Open/Closed principle, since they allow for use anywhere and everywhere for that type of data, no matter the specific values. 
+
+
+
         public static string UpperFirstLetter(string str)
         {
             if (string.IsNullOrEmpty(str))
@@ -67,7 +74,7 @@ namespace LemonadeStandConsoleApp
 
         public static string MainMenu()
         {
-            DisplayMessage("Main Menu:\nEnter Selection Number\n(1) View Current Stats\n(2) Store\n(3) Change Recipe\n(4) View Forecast\n(5) Play");
+            DisplayMessage("Main Menu:\nEnter Selection Number\n(1) View Current Stats\n(2) Store\n(3) Change Recipe\n(4) View Today's Weather\n(5) View Forecast\n(6) Play");
             return GetUserInput();
         }
 
@@ -85,11 +92,21 @@ namespace LemonadeStandConsoleApp
         //DISPLAYS
 
 
-        public static void DisplayCurrentStatus(Player player)
+        public static void DisplayCurrentStatus(Player player, Day day)
         {
             DisplayTotalMoney(player);
+            DisplayProfit(player);
             DisplayInventory(player);
             DisplayRecipe(player);
+            DisplayCurrentPrice(day.PricePerCup);
+            DisplaySatisfaction(day);
+        }
+        public static void DisplayEndStats(Player player, Day day)
+        {
+            DisplayMessage("Your Lemonade Stand is now closed!\nYOUR STATS:");
+            DisplayTotalMoney(player);
+            DisplayProfit(player);
+            DisplaySatisfaction(day);
 
         }
         public static void DisplayInventory(Player player)
@@ -100,6 +117,10 @@ namespace LemonadeStandConsoleApp
         public static void DisplayTotalMoney(Player player)
         {
             DisplayMessage("Your current account balance is: $" + player.TotalMoney);
+        }
+        public static void DisplayProfit(Player player)
+        {
+            DisplayMessage("Profits: $" + player.Profit);
         }
         public static void DisplayRecipe(Player player)
         {
@@ -118,6 +139,10 @@ namespace LemonadeStandConsoleApp
         {
             DisplayMessage("Today's Weather: ");
             todaysWeather.ForEach(Console.WriteLine);
+        }
+        public static void DisplaySatisfaction(Day day)
+        {
+            DisplayMessage("Customer Satisfaction: " + day.CustSatisfactionPercent + "%");
         }
     }
 }

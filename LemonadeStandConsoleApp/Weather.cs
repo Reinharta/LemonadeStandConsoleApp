@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStandConsoleApp
 {
-    class Weather
+    public class Weather
     {
         Random random = new Random();
 
@@ -60,18 +60,18 @@ namespace LemonadeStandConsoleApp
         }
         public void CreateSevenDayForecast()
         {
-            for (int i = 0; i <= 7; i++) 
+            for (int i = 0; i < 7; i++) 
             {
                 string condition = CreateForecastInstance();
-                sevenDayForecastList[i] = condition;
+                sevenDayForecastList.Add(condition);
             }
         }
         public void CreateSevenDayTemperatures()
         {
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 int degrees = CreateTemperatureInstance();
-                sevenDayTemperatureList[i] = degrees;
+                sevenDayTemperatureList.Add(degrees);
             }
         }
 
@@ -85,7 +85,7 @@ namespace LemonadeStandConsoleApp
             }
             else
             {
-                todayActualForecast = forecastList.ElementAt(forecastSelecter);
+                todayActualForecast = forecastList.ElementAt(forecastSelecter - 1);
             }
 
             todayActualTemperature = (random.Next(-5, 6) + SevenDayTemperatureList[0]);
@@ -95,7 +95,7 @@ namespace LemonadeStandConsoleApp
         //instances
         public string CreateForecastInstance()
         {
-            int conditionIndex = random.Next(0, (forecastList.Count + 1));
+            int conditionIndex = random.Next(0, (forecastList.Count));
             string condition = forecastList.ElementAt(conditionIndex);
             return condition;
         }
@@ -115,21 +115,20 @@ namespace LemonadeStandConsoleApp
         }
         public void AddEndTemperatureList(int gameLength)
         {
-            while (gameLength >= 7){
+            if (gameLength >= 7){
                 int newTemperature = CreateTemperatureInstance();
-                sevenDayTemperatureList[6] = newTemperature;
+                sevenDayTemperatureList.Add(newTemperature);
             }
         }
         public void AddEndForecastList(int gameLength)
         {
-            while (gameLength >= 7)
+            if (gameLength >= 7)
             {
                 string newForecast = CreateForecastInstance();
-                sevenDayForecastList[6] = newForecast;
+                sevenDayForecastList.Add(newForecast);
+                return;
             }
         }
-
-
 
         //Displays
         public void DisplayTodaysWeather()

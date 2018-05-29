@@ -56,41 +56,51 @@ namespace LemonadeStandConsoleApp
             player.SetName();
             SetGameDays();
             UserInterface.DisplayRecipe(player);
-            UserInterface.DisplayInventory(player);
-            AskGoToStore();
+            GoToStore();
             UserInterface.DisplayRecipe(player);
             AskChangeRecipe();
-            UserInterface.DisplayCurrentStatus(player);
             RunGame();
 
         }
 
         public void RunGame()
         {
-            CreateNewDay();
-            RunMainMenu(day);
-            RunDay();
+            CreateDay();
+            if (DayCount == GameLength)
+            {
+                EndGame();
+            }
+            if (DayCount < GameLength)
+            {
+                CreateDay();
+
+            }
         }
 
-        public void CreateNewDay()
+
+        public void CreateDay()
         {
+            DayCount = DayCount + 1;
             if (DayCount == 1)
             {
+                Day day = new Day(player);
+                day.CreateFirstDay(player, GameLength, DayCount);
+                RunMainMenu(day);
+                
 
             }
             if (DayCount > 1 & DayCount <= GameLength)
             {
-                Day day = new Day();
-                day.CreateDay(player);
+                Day day = new Day(player);
+                day.CreateDay(player, GameLength, DayCount);
+                RunMainMenu(day);
+
             }
             else
             {
                 EndGame();
             }
-        }
-        public void RunDay()
-        {
-            CreateNewDay();
+
         }
 
         public void DisplayIntructions()
@@ -107,31 +117,35 @@ namespace LemonadeStandConsoleApp
 
         }
 
-        public void RunMainMenu()
+        public void RunMainMenu(Day today)
         {
             string input = UserInterface.MainMenu();
             if (input == "1")
             {
-                UserInterface.DisplayCurrentStatus(player);
-                RunMainMenu();
+                UserInterface.DisplayCurrentStatus(player, today);
+                RunMainMenu(today);
             }
             if (input == "2")
             {
                 Store.StoreMenu(player);
-                RunMainMenu();
+                RunMainMenu(today);
             }
             if (input == "3")
             {
                 recipe.ChangeRecipeMenu();
-                RunMainMenu();
+                RunMainMenu(today);
             }
             if (input == "4")
             {
-                
+                today.weather.DisplayTodaysWeather(); 
             }
             if (input == "5")
             {
-                return;
+                today.weather.DisplayWeatherPrediction();
+            }
+            if (input == "6")
+            {
+                RunGame();
             }
         }
 
@@ -153,18 +167,23 @@ namespace LemonadeStandConsoleApp
             UserInterface.DisplayMessage("Would you like to change your recipe?");
             string input = UserInterface.GetUserInput().ToLower();
             input = UserInterface.UpperFirstLetter(input);
-            if(input == "No")
+            switch (input)
             {
-                return;
-            }
-            if(input == "Yes")
-            {
-                recipe.ChangeRecipeMenu();
-            }
-            else
-            {
-                UserInterface.DisplayMessage("Invalid input. Please try again.");
-                AskChangeRecipe();
+                case "No":
+                    {
+                        break;
+                    }
+                case "Yes":
+                    {
+                        recipe.ChangeRecipeMenu();
+                        break;
+                    }
+                default:
+                    {
+                        UserInterface.DisplayMessage("Invalid input. Please try again.");
+                        AskChangeRecipe();
+                        break;
+                    }
             }
         }
 
@@ -172,47 +191,31 @@ namespace LemonadeStandConsoleApp
 
 
         // STORE
-        public void AskGoToStore()
-        {
-            UserInterface.DisplayMessage("Would you like to purchase any supplies from the store?");
-            string input = UserInterface.GetUserInput().ToLower();
-            if (input == "yes")
-            {
-                GoToStore();
-            }
-            if (input == "no")
-            {
-                return;
-            }
-            else{
-                UserInterface.DisplayMessage("Please try again, entering either Yes or No.");
-                AskGoToStore();
-            }
-        }
         public void GoToStore()
         {
-            Store.StoreMenu(player);
             UserInterface.DisplayInventory(player);
             UserInterface.DisplayTotalMoney(player);
-            BuyNextSupply();
-        }
-        public void BuyNextSupply() { 
-            UserInterface.DisplayMessage("Would you like to purchase more supplies?");
+            UserInterface.DisplayMessage("Would you like to purchase supplies?");
             string input = UserInterface.GetUserInput();
             input = UserInterface.UpperFirstLetter(input);
-            if(input == "Yes")
+            switch (input)
             {
-                GoToStore();
-            }
-            if(input == "No" || input == "no")
-            {
-                return;
-            }
-            else
-            {
-                UserInterface.DisplayMessage("Please try again, entering either Yes or No.");
-                BuyNextSupply();
-
+                case "Yes":
+                    {
+                        Store.StoreMenu(player);
+                        GoToStore();
+                        break;
+                    }
+                case "No":
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        UserInterface.DisplayMessage("Please try again, entering either Yes or No.");
+                        GoToStore();
+                        break;
+                    }
             }
         }
 

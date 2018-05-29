@@ -8,10 +8,19 @@ namespace LemonadeStandConsoleApp
 {
     public class Inventory
     {
+
+        // SOLID:: I felt that I used the Open/Closed Principle here in the inventory as well as the Store and Recipe Classes by using Dictionaries.  
+        // I think this qualifies because the use of Dictionaries here and how the Display methods in the User Interface class are set-up would make it
+        // relatively easy to add new items. I also did not use a value as a setter in the dictionary property, which felt to me like it closed it off to
+        // undesired modification. 
+
+
+
         private int cupsInventory;
         private int lemonsInventory;
         private int sugarInventory;
         private int iceInventory;
+        private int preparedCups;
 
         private Dictionary<string, int> currentInventory = new Dictionary<string, int>(){
             {"Cups", 0 },
@@ -50,6 +59,7 @@ namespace LemonadeStandConsoleApp
             get { return cupsInventory; }
             set { cupsInventory = value; }
         }
+        public int PreparedCups { get => preparedCups; set => preparedCups = value; }
         public Dictionary<string, int> CurrentInventory
         {
             get
@@ -64,6 +74,7 @@ namespace LemonadeStandConsoleApp
                 currentInventory["Ice"] = IceInventory;
             }
         }
+
 
 
         public void AddInventory(string product, int quantity)
@@ -90,6 +101,35 @@ namespace LemonadeStandConsoleApp
                 UserInterface.DisplayMessage("ERROR: product given does not match any product keys.");
             }
 
+        }
+        public void MakePitcher(Recipe recipe, Day day)
+        {
+            if (CurrentInventory["Lemons"] >= recipe.currentRecipe["Lemons"] 
+                & CurrentInventory["Sugar"] >= recipe.currentRecipe["Sugar"] 
+                & CurrentInventory["Ice"] >= recipe.currentRecipe["Ice"])
+            {
+                CurrentInventory["Lemons"] = CurrentInventory["Lemons"] - recipe.currentRecipe["Lemons"];
+                CurrentInventory["Sugar"] = CurrentInventory["Sugar"] - recipe.currentRecipe["Sugar"];
+                CurrentInventory["Ice"] = CurrentInventory["Ice"] - recipe.currentRecipe["Ice"];
+                PreparedCups = recipe.CupsPerPitcher;
+            }
+            else
+            {
+                UserInterface.DisplayMessage("You've Sold Out!");
+                day.EndDay();
+            }
+        }
+        public void SellCup(Recipe recipe, Day day)
+        {
+            PreparedCups = PreparedCups - 1;
+            if(PreparedCups == 0)
+            {
+                MakePitcher(recipe, day);
+            }
+            else
+            {
+                return;
+            }
         }
 
     }

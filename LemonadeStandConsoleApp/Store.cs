@@ -81,8 +81,6 @@ namespace LemonadeStandConsoleApp
             }
         }
 
-        //RunStore method to chain methods below?
-
 
         public static void StoreMenu(Player player)
         {

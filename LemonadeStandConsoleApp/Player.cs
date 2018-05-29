@@ -108,7 +108,10 @@ namespace LemonadeStandConsoleApp
         {
             expensesTotal = (expensesTotal + moneySpent);
         }
-        //method to calculate profit ( total money - (starting money + $spent in store) )
+        public void CalculateProfit()
+        {
+            Profit = (TotalMoney - ExpensesTotal);
+        }
 
 
         public bool VerifyFunds(double productCost)
