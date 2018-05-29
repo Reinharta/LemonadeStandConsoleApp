@@ -59,12 +59,6 @@ namespace LemonadeStandConsoleApp
                 Console.WriteLine("QTY {0}: ${1}", pair.Key, pair.Value);
             }
         }
-        //public static void DisplayDictionaryEntry(Dictionary<string, double> dictionary)
-        //{
-        //    foreach (KeyValuePair<string, double> pair in dictionary){
-        //        Console.WriteLine("{0}: {1}", pair.Key, pair.Value);
-        //    }
-        //}
         public static void DisplayArray(Array array)
         {
             Console.WriteLine(string.Join("\n", array));
@@ -127,9 +121,10 @@ namespace LemonadeStandConsoleApp
             DisplayMessage("Your current Lemonade Recipe is:");
             DisplayDictionary(player.recipe.currentRecipe);
         }
-        public static void DisplayRemainingDays()
+        public static void DisplayRemainingDays(int gameLength, int dayCount)
         {
-            //disp remaining days count
+            int remainingDays = (gameLength - dayCount);
+            UserInterface.DisplayMessage("Days Left: " + remainingDays);
         }
         public static void DisplayCurrentPrice(double pricePerCup)
         {

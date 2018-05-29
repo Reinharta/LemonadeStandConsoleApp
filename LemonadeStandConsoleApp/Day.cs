@@ -121,7 +121,7 @@ namespace LemonadeStandConsoleApp
             player.CalculateProfit();
             UserInterface.DisplayCurrentStatus(player, this);
             DisplayCustomersServed();
-
+            player.inventory.InventoryLoss();
         }
 
         public void DisplayCustomersServed()
@@ -134,9 +134,5 @@ namespace LemonadeStandConsoleApp
 
             return CustSatisfactionPercent;
         }
-
-        // display total profit (from player) at end of each day?
-        // at end of each day - display # sales made, sales earnings, profit margin to date, total money (account balance?)
-        // methods for inventory reductions (ice melting, bugs in sugar, rotten lemons)
     }
 }

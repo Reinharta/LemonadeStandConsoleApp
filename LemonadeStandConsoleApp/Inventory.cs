@@ -15,7 +15,7 @@ namespace LemonadeStandConsoleApp
         // undesired modification. 
 
 
-
+        Random random = new Random();
         private int cupsInventory;
         private int lemonsInventory;
         private int sugarInventory;
@@ -130,6 +130,29 @@ namespace LemonadeStandConsoleApp
             {
                 return;
             }
+        }
+
+        public void InventoryLoss()
+        {
+            CurrentInventory["Ice"] = 0;
+            int lossType = random.Next(0, 7);
+            if (lossType == 1)
+            {
+                CurrentInventory["Lemons"] = 0;
+                UserInterface.DisplayMessage("All of your Lemons have gone bad! Time to get some more in the store.");
+                return;
+            }
+            if (lossType == 2)
+            {
+                CurrentInventory["Sugar"] = 0;
+                UserInterface.DisplayMessage("Bugs got into your Sugar and you had to throw it all out! Time to get some more in the store.");
+                return;
+            }
+            else
+            {
+                return;
+            }
+
         }
 
     }

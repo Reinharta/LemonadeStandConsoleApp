@@ -224,6 +224,10 @@ namespace LemonadeStandConsoleApp
 
         }
 
+        public void database()
+        {
+
+        }
     }
 }
 ;

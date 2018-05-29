@@ -128,11 +128,6 @@ namespace LemonadeStandConsoleApp
 
             player.CheckOut(productKey, quantityInput, cost, player);
         }
-
-
-       
-
-        // compare totalmoney to cost of product and deny purchase if not enough funds.
         
 
     }

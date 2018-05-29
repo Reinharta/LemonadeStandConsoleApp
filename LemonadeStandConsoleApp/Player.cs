@@ -17,7 +17,6 @@ namespace LemonadeStandConsoleApp
         private double totalMoney;
         private double expensesTotal;
         private double profit;
-        //private double currentRecipe;
         
 
         //Properties//

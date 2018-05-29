@@ -108,16 +108,6 @@ namespace LemonadeStandConsoleApp
             ChangeRecipeMenu();
         }
 
-
-        //public void ChangeRecipeValues()
-        //{
-        //    currentRecipe["Lemons"] = lemonsPerPitcher;
-        //    currentRecipe["Sugar"] = sugarCupsPerPitcher;
-        //    currentRecipe["Ice"] = iceCubesPerCup;
-        //}
-        
-
-
         // calculate # of cups per pitcher based on ice 
         public void CalculateCupsInPitcher()
         {
